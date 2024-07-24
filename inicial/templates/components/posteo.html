@@ -1,0 +1,76 @@
+{% load static %}
+<style>
+  #id_content::before {
+    content: "Ayuda: Ingrese su texto aquí. ";
+    color: #000000; /* Color gris para el texto de ayuda */
+    font-style: italic; /* Estilo de fuente itálica para destacar que es un texto de ayuda */
+  }
+  #id_content {
+    border: none;
+  }
+</style>
+
+<form action="{% url 'insert_post' id=1 %}" method="post">
+  {% csrf_token %}
+  <div class="card border-success mb-3 mx-auto" style="max-width: 40rem; border-radius: none;">
+    <!-- Cabecera -->
+    <div
+      class="card-header bg-transparent border-success d-flex justify-content-between"
+    >
+      <input type="file" id="file-input" accept=".png" hidden />
+
+      <!-- Botón que el usuario puede ver y hacer clic -->
+
+      <div class="col">{{ forma.image }}</div>
+      <div class="col"></div>
+      <div class="col">{{ forma.title }}</div>
+    </div>
+
+    <!-- Cuerpo -->
+    <div class="card-body text-success">
+      <div class="row">
+        <div class="col-md-2 my-auto">
+          <img
+            src="{% static 'img/img_star.svg' %}"
+            alt="Estrella"
+            class="img-fluid"
+          />
+        </div>
+        <div class="col-md-10" style="border: none">
+          {{ forma.content }}
+          <!-- <textarea
+            class="form-control"
+            placeholder="Postea aquí....."
+            style="height: 8rem"
+          ></textarea -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie -->
+    <div class="card-footer bg-transparent border-success">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-3 text-end">
+          <a href="#"
+            ><img
+              src="{% static 'img/img_star.svg' %}"
+              alt="Estrella"
+              class="img-fluid"
+          /></a>
+        </div>
+        <div class="col-sm-4">
+          <select class="form-select" aria-label="Seleccione una opción">
+            <option value="1">Opción 1</option>
+            <option value="2">Opción 2</option>
+            <option value="3">Opción 3</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- {{ forma }} -->
